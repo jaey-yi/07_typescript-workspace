@@ -1,0 +1,33 @@
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+.label { font-weight: 600; }
+.required { color: #dc2626; margin-left: 2px; }
+.control { position: relative; }
+.input, .select, .textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 10px 12px;
+  background: #ffffff;
+  color: #111827;
+}
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+.helper { color: #6b7280; font-size: 12px; margin: 0 5px; }
+.error { color: #dc2626; font-size: 12px; margin: 0 5px; }
+
+/* sizes */
+.is-sm .input, .is-sm .select, .is-sm .textarea { padding: 8px 10px; font-size: 12px; }
+.is-lg .input, .is-lg .select, .is-lg .textarea { padding: 12px 14px; font-size: 16px; }
+
+/* invalid */
+.is-invalid .input, .is-invalid .select, .is-invalid .textarea {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.10);
+}
+
+.checkbox, .radio { display: flex; align-items: center; gap: 8px; }
+
+
