@@ -1,0 +1,49 @@
+타입스크립트
+자바스크립트 + 정적타입 시스템 추가
+
+
+왜 사용 ?
+- 무슨 타입이 어디에 들어가는 지 지정 => 에러 발견 가능 , 코드 작성시 품질 개선 쉬워짐
+- 협업시 더 안전해짐
+
+
+설치
+```bash
+npm install -g typescript
+
+npm install typescript --save-dev
+
+tcs -v
+
+```
+
+파일 생성
+```bash
+# npm 7+
+npm create vite@latest my-react-ts-app -- --template react-ts
+
+# yarn
+yarn create vite my-react-ts-app --template react-ts
+```
+
+파일 실행 
+
+cd my-react-ts-app
+npm install
+npm run dev
+
+
+실 사용 예제
+let message : string = "hello"
+
+: 뒤에 오는 것 = 타입 주석
+왜 타입을 명시할까
+의도 명확화 + 버그 예방
+
+배열 
+let numbers : number[] = [1,2,3,4,5]
+또는
+let numbers : Array<number> = [1,2,3]
+
+튜플
+let person : [string, number] = ["steve", 30]
