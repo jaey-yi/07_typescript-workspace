@@ -1,6 +1,8 @@
-" use client";
+"use client";
 
+import sumBy from "lodash/sumBy";
 import dayjs from "dayjs";
+import "dayjs/locale/ko";
 
 import {
   Chart as ChartJS,
@@ -29,7 +31,7 @@ ChartJS.register(
   ArcElement // 원 요소 (Pie 차트)
 );
 
-export default function LineChart({
+export default function Piechart({
   salesData,
 }: {
   salesData: {
@@ -42,28 +44,30 @@ export default function LineChart({
   const [selectedChart, setSelectedChart] = useState<"line" | "bar" | "pie">(
     "line"
   );
-  // Line 차트 데이터
-
-  const lineChartData = {
-    labels: salesData.map((d) => d.month),
+  const pieChartData = {
+    labels: ["매출", "순이익", "지출"],
     datasets: [
       {
-        label: "매출",
-        data: salesData.map((d) => d.sales),
-        borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        tension: 0.4,
-      },
-      {
-        label: "순이익",
-        data: salesData.map((d) => d.profit),
-        borderColor: "rgb(54, 162, 235)",
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-        tension: 0.4,
+        data: [
+          sumBy(salesData, "sales"),
+          sumBy(salesData, "profit"),
+          sumBy(salesData, "expenses"),
+        ],
+        backgroundColor: [
+          "rgba(75, 192, 192, 0.6)",
+          "rgba(54, 162, 235, 0.6)",
+          "rgba(255, 99, 132, 0.6)",
+        ],
+
+        borderColor: [
+          "rgba(75, 192, 192, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 99, 132, 1)",
+        ],
+        borderWidth: 1,
       },
     ],
   };
-
   // 차트 옵션
   const chartOptions = {
     responsive: true,
@@ -79,5 +83,18 @@ export default function LineChart({
     },
   };
 
-  return <div>Line Chart Component</div>;
+  return (
+    <div>
+      <button
+        onClick={() => setSelectedChart("pie")}
+        className={`px-4 py-2 rounded ${
+          selectedChart === "pie"
+            ? "bg-blue-500 text-white"
+            : "bg-white text-gray-700 border"
+        }`}
+      >
+        파이 차트
+      </button>
+    </div>
+  );
 }
